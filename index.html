@@ -213,7 +213,7 @@
             const currentHour = now.getHours();
 
             let videoUrl;
-            if (currentHour >= 14 && currentHour < 17) {
+            if (currentHour >= 8 && currentHour < 23) {
                 videoUrl = schedule.filmsSeries[Math.floor(Math.random() * schedule.filmsSeries.length)];
             } else {
                 videoUrl = defaultVideoUrl; // Si aucune catégorie ne correspond, choisir une vidéo par défaut
