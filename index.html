@@ -3,231 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Streaming Juridique - Law Matter TV</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Réservation de Livre Numérique</title>
     <style>
-        /* Styles */
+        /* Styles de base */
         body {
             font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
             margin: 0;
             padding: 0;
-            position: relative;
-            overflow: hidden;
+            background-color: #7cb342;
         }
 
-        .header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .site-name {
-            font-size: 24px;
-            color: #fff;
-        }
-
-        .video-player {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            margin: 20px 0;
-        }
-
-        .clock {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 16px;
-            z-index: 10;
-            color: #fff;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 5px;
-            border-radius: 5px;
-        }
-
-        .direct-text {
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            
-            color: rgb(225, 0, 0, 0.9 );
-            padding: 5px;
-            border-radius: 5px;
-            font-weight: bold;
-            z-index: 10;
-        }
-
-        iframe {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 16 / 9;
-            border: none;
-            z-index: 1;
-        }
-
-        .actions {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-        .icon-button {
-            background-color: transparent;
-            color: #fff;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            margin: 0 10px;
-            transition: color 0.3s ease;
-        }
-
-        .icon-button:hover {
-            color: #ddd;
-        }
-
-        .small-buttons {
-            display: flex;
-            justify-content: space-evenly;
-            margin: 20px 0;
-        }
-
-        .small-button {
-            background-color: #FFD700;
-            color: #000;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
-            font-size: 12px;
-            cursor: pointer;
-            margin: 0 5px;
-            display: flex;
-            align-items: center;
-            opacity: 1;
-            transition: opacity 0.3s ease;
-        }
-
-        .small-button span {
-            margin-left: 5px;
-        }
-
-        .copyright {
+        header {
+            background-color: #7cb342;
+            color: white;
+            padding: 60px 0;
             text-align: center;
-            font-size: 12px;
-            margin-top: 20px;
+            background-image: url('https://res.cloudinary.com/donkwo18z/image/upload/v1731984158/Design_sans_titre_20241119_023614_0000_aqehty.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form label {
+            margin: 10px 0 5px;
+        }
+
+        form input, form textarea {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #7cb342;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #2e6a31;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #7cb342;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="site-name">Law Matter TV</div>
-    </div>
+    <header>
+        <h1>Réservez votre Livre Numérique</h1>
+        <p>Complétez le formulaire ci-dessous pour réserver votre livre.</p>
+    </header>
 
-    <div class="video-player">
-        <iframe id="videoPlayer" 
-                allow="autoplay; fullscreen; picture-in-picture; encrypted-media" 
-                allowfullscreen></iframe>
-        <div class="clock" id="clock" onclick="alert('Law Matter TV fonctionne selon le fuseau horaire GMT+0')"></div>
-        <div class="direct-text" id="directText" onclick="alert('Law Matter TV Célèbre HALLOWEEN 👻 🎃')">MOVIES</div>
-    </div>
+    <main>
+        <form id="reservationForm">
+            <label for="firstName">Prénom :</label>
+            <input type="text" id="firstName" name="firstName" required>
 
-    <div class="actions">
-        <button class="icon-button" onclick="toggleFullScreen()">
-            <i class="fas fa-expand"></i>
-        </button>
-        <button class="icon-button" onclick="shareLink()">
-            <i class="fas fa-share-alt"></i>
-        </button>
-    </div>
+            <label for="lastName">Nom :</label>
+            <input type="text" id="lastName" name="lastName" required>
 
-    <div class="small-buttons">
-        <button class="small-button" id="btn1" onclick="window.open('https://me.lygosapp.com/buy/LawMatter_store', '_blank')">
-            <span>Fait un don</span>
-            <i class="fas fa-hand-holding-usd"></i>
-        </button>
-        <button class="small-button" id="btn2" onclick="window.open('https://wa.me/2250143692215?text=J%27aimerais%20en%20savoir%20davantage%20sur%20le%20droit%20de%20diffusion%20d%27une%20publicité%20sur%20votre%20chaîne', '_blank')">
-            <span>Faire une publicité</span>
-            <i class="fas fa-bullhorn"></i>
-        </button>
-        <button class="small-button" id="btn3" onclick="window.open('https://wa.me/2250143692215?text=J%27aimerais%20en%20savoir%20davantage%20sur%20la%20création,%20le%20devis%20et%20le%20droit%20de%20diffusion', '_blank')">
-            <span>Créer une émission</span>
-            <i class="fas fa-tv"></i>
-        </button>
-        <button class="small-button" id="btn4" onclick="window.open('https://lawmattertv.taplink.ws/', '_blank')">
-            <span>Télécharger application</span>
-            <i class="fas fa-download"></i>
-        </button>
-    </div>
+            <label for="contactEmail">Email :</label>
+            <input type="email" id="contactEmail" name="contactEmail" required>
 
-    <div class="copyright">
-        &copy; 2024 Law Matter TV. Tous droits réservés.
-    </div>
+            <label for="phone">Téléphone :</label>
+            <input type="tel" id="phone" name="phone" placeholder="Ex : +33 6 12 34 56 78" required>
+
+            <label for="courseTitle">Titre du livre :</label>
+            <input type="text" id="courseTitle" name="courseTitle" required>
+
+            <label for="courseDescription">Description :</label>
+            <textarea id="courseDescription" name="courseDescription" required></textarea>
+
+            <label for="reservationDate">Date de la réservation :</label>
+            <input type="date" id="reservationDate" name="reservationDate" required>
+
+            <label>
+                <input type="checkbox" id="feesAcknowledgment" name="feesAcknowledgment" required>
+                J'accepte que des frais puissent s'appliquer lors de la réception de ma réservation.
+            </label>
+
+            <button type="button" id="submitButton">Réserver</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>© 2024 Réservation de Livre Numérique</p>
+    </footer>
 
     <script>
-        function toggleFullScreen() {
-            const video = document.getElementById('videoPlayer');
-            if (!document.fullscreenElement) {
-                video.requestFullscreen().catch(err => {
-                    alert(`Erreur lors de l'activation du mode plein écran : ${err.message}`);
-                });
-            } else {
-                document.exitFullscreen();
-            }
-        }
+        document.getElementById('submitButton').addEventListener('click', function() {
+            let form = document.getElementById('reservationForm');
+            let feesAcknowledgment = form.querySelector('#feesAcknowledgment');
 
-        function shareLink() {
-            const url = window.location.href;
-            navigator.clipboard.writeText(url).then(() => {
-                alert("Lien copié dans le presse-papier.");
-            }).catch(err => {
-                alert(`Erreur lors de la copie du lien : ${err}`);
-            });
-        }
-
-        function updateClock() {
-            const now = new Date();
-            const options = { hour: '2-digit', minute: '2-digit' };
-            document.getElementById('clock').textContent = now.toLocaleTimeString([], options);
-        }
-
-        setInterval(updateClock, 1000);
-
-        const schedule = {
-            filmsSeries: [
-                "https://www.youtube.com/embed/ukOzKY7WX-M?autoplay=1&controls=0",
-                "https://www.youtube.com/embed/KuKIzMFCfIU?autoplay=1&controls=0",
-                "https://www.youtube.com/embed/jHyWQ4S2o1M?autoplay=1&controls=0",
-                "https://www.youtube.com/embed/-wHLsG_yNcM?autoplay=1&controls=0",
-                "https://www.youtube.com/embed/BN2HouYpCsA?autoplay=1&controls=0"
-            ]
-        };
-
-        const defaultVideoUrl = "https://youtube.com/embed/playlist?list=PLKjjURZYdaOBmEdHupEmX7iMordNoGsP7&autoplay=1&controls=0";
-
-        function checkSchedule() {
-            const now = new Date();
-            const currentHour = now.getHours();
-
-            let videoUrl;
-            if (currentHour >= 8 && currentHour < 23) {
-                videoUrl = schedule.filmsSeries[Math.floor(Math.random() * schedule.filmsSeries.length)];
-            } else {
-                videoUrl = defaultVideoUrl; // Si aucune catégorie ne correspond, choisir une vidéo par défaut
+            if (!feesAcknowledgment.checked) {
+                alert('Vous devez accepter que des frais puissent s\'appliquer.');
+                return;
             }
 
-            // Charger la vidéo dans l'iframe
-            document.getElementById("videoPlayer").src = videoUrl;
-        }
+            // Récupérer les données du formulaire
+            let firstName = document.getElementById('firstName').value;
+            let lastName = document.getElementById('lastName').value;
+            let contactEmail = document.getElementById('contactEmail').value;
+            let phone = document.getElementById('phone').value;
+            let courseTitle = document.getElementById('courseTitle').value;
+            let courseDescription = document.getElementById('courseDescription').value;
+            let reservationDate = document.getElementById('reservationDate').value;
 
-        // Vérifier l'horaire toutes les heures pour mettre à jour la vidéo automatiquement
-        setInterval(checkSchedule, 3600000); // 1 heure en millisecondes
+            // Construire le message pour WhatsApp
+            let message = `Réservation de Livre Numérique:\n\nPrénom: ${firstName}\nNom: ${lastName}\nEmail: ${contactEmail}\nTéléphone: ${phone}\nTitre du livre: ${courseTitle}\nDescription: ${courseDescription}\nDate de la réservation: ${reservationDate}`;
 
-        // Lancer la première vérification de l'horaire au chargement de la page
-        checkSchedule();
+            // Encodage du message pour le lien WhatsApp
+            let whatsappLink = `https://wa.me/2250143692215?text=${encodeURIComponent(message)}`;
+
+            // Rediriger vers WhatsApp
+            window.location.href = whatsappLink;
+        });
     </script>
 </body>
 </html>
